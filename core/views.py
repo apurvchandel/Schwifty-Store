@@ -197,6 +197,8 @@ class CheckoutView(View):
                     return redirect('core:payment', payment_option='stripe')
                 elif payment_option == 'P':
                     return redirect('core:payment', payment_option='paypal')
+                elif payment_option == 'U':
+                    return redirect('core:payment',payment_option = 'UPI')
                 else:
                     messages.warning(
                         self.request, "Invalid payment option selected")
@@ -347,8 +349,12 @@ class PaymentView(View):
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 10
     template_name = "home.html"
+
+class UPIPayment(ListView):
+    model = Item
+    paginate_by = 10
+    template_name = "upi_payment.html"
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
@@ -468,7 +474,7 @@ def get_coupon(request, code):
 
 
 class AddCouponView(View):
-    def post(self, *args, **kwargs):
+    def post(self, *args, **kwargs):       
         form = CouponForm(self.request.POST or None)
         if form.is_valid():
             try:
@@ -479,8 +485,7 @@ class AddCouponView(View):
                 order.save()
                 messages.success(self.request, "Successfully added coupon")
                 return redirect("core:checkout")
-            except ObjectDoesNotExist:
-                messages.info(self.request, "You do not have an active order")
+            except ValueError:
                 return redirect("core:checkout")
 
 

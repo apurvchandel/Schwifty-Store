@@ -1,6 +1,6 @@
 {% load cart_template_tags %}
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark white scrolling-navbar bg-dark">
   <div class="container">
 
     <!-- Brand -->
@@ -14,20 +14,28 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    
     <!-- Links -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
-        {% comment %} <li class="nav-item active">
+         <li class="nav-item active">
           <a class="nav-link waves-effect" href="/">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link waves-effect" href="/upi_payment">About Us
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect" href="/checkout">
-            Checkout</a>
-        </li> {% endcomment %}
+          <a class="nav-link waves-effect" href="/">Contact
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        
       </ul>
 
       <!-- Right -->
